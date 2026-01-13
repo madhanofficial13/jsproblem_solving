@@ -4396,7 +4396,20 @@ const numEveOrOdd = (num)=>{
 }
 console.log(numEveOrOdd(10));
 
+const checkPolli1 = (check)=>{
+  let check1 = "";
+  for(let i =check.length-1 ;i>=0;i--){
+    check1 += check[i];
+  }
+  if(check1===check){ 
+    console.log("string is ploindrome");
+    return true;  
+  }
+  return false
 
+}
+
+console.log(checkPolli1("madae"));
 
 
 
