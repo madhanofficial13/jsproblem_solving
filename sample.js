@@ -4371,13 +4371,10 @@ console.log(sum1);
 console.log(sum3);
 
 let reversee = "madhanraj"
-
-const rev1 = (reversee)=>{
-  let spli = reversee.split("");
-  console.log(spli);
-  
+const reve1 = (reverse)=>{
+  let spli = reverse.split("");
   let sp = 0;
-  let ep = reversee.length-1;
+  let ep = reverse.length-1;
   while(sp<ep){
     let temp = spli[sp];
     spli[sp] = spli[ep];
@@ -4385,10 +4382,21 @@ const rev1 = (reversee)=>{
     sp++;
     ep--;
   }
-  return spli.join("");
-
+  return spli.join("")
 }
-console.log(rev1(reversee));
+console.log(reve1(reversee));
+
+const numEveOrOdd = (num)=>{
+  let odd = true;
+  if(num%2===0){
+    return odd;
+  }else{
+    return false;
+  }
+}
+console.log(numEveOrOdd(10));
+
+
 
 
 
