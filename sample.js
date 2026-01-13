@@ -4370,4 +4370,25 @@ let sum2 = sum.filter(i=>i>sum3?sum3 = i:i)
 console.log(sum1);
 console.log(sum3);
 
+let reversee = "madhanraj"
+
+const rev1 = (reversee)=>{
+  let spli = reversee.split("");
+  console.log(spli);
+  
+  let sp = 0;
+  let ep = reversee.length-1;
+  while(sp<ep){
+    let temp = spli[sp];
+    spli[sp] = spli[ep];
+    spli[ep] = temp;
+    sp++;
+    ep--;
+  }
+  return spli.join("");
+
+}
+console.log(rev1(reversee));
+
+
 
