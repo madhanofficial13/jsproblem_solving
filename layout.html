@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="layout.css" />
+  </head>
+  <body>
+    <header id="head">
+      <button aria-label="Close Menu">❌</button>
+      <button aria-labelledby="title">Submit</button>
+      <input aria-describedby="form" type="text" />
+      <p class="pass">password must be 8 characters</p>
+      <h1 id="he">Madhan <strong id="str"> Can Be Do Anything </strong></h1>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#footer">Footer</a>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <label for="Email">Email</label>
+        <input
+          aria-describedby="email1"
+          aria-invalid="false"
+          required
+          type="email"
+        />
+        <input type="radio" id="in" name="option" /> male
+        <input type="radio" name="option" /> female
+        <input type="radio" name="option" /> transeGender
+        <p id="email1" role="alert">Email Format Is Invalid</p>
+      </section>
+      <section>
+        <h2>Blog Post<small>(Belongs To Tech)</small></h2>
+        <abbr title="hyper Text Markup Language">HTML</abbr>
+        <article>
+          <details>
+            <summary>Blog Details</summary>
+            <p><kbd>Ctrl</kbd> + <kbd>C</kbd> to copy</p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, est
+            <blockquote>
+              enim illo eius consectetur animi, dolores iste nemo quisquam quae
+            </blockquote>
+            veritatis possimus <q>tempora officiis labore fuga ab itaque et!</q>
+          </details>
+        </article>
+        <hr />
+        <article>
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="togle"
+            aria-describedby="cancel"
+          >
+            <h1 id="togle">Delete</h1>
+            <p id="cancel">This undone</p>
+          </div>
+          <time datetime="2025-03-13">Nov,13, 2014</time>
+          <h2>Madhan <em>Blog</em> Post</h2>
+        </article>
+        <hr />
+        <article>
+          <button
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="menu"
+            onclick=""
+          >
+            Options
+          </button>
+          <ul role="menu" id="menu">
+            <li role="menuitem" tabindex="-1">settings</li>
+            <li role="menuitem" tabindex="-1">Home</li>
+            <li role="menuitem" tabindex="-1">About</li>
+          </ul>
+          <time datetime="2025-03-13">Nov,13, 2014</time>
+          <h2>Mithra Blog Post</h2>
+        </article>
+        <hr />
+        <article>
+          <time datetime="2025-03-13">Nov,13, 2014</time>
+          <h2>Manimaran Blog Post</h2>
+        </article>
+      </section>
+      <section>
+        <article>
+          <p>This have to <code>console.log()</code> debug</p>
+          <pre>
+function hello() {
+  return "Hi";
+}
+</pre
+          >
+        </article>
+      </section>
+      <section>
+        <div role="tablist">
+          <div
+            role="tab"
+            id="panel-1"
+            aria-controls="panel1"
+            aria-selected="true"
+            tabindex="0"
+          >
+            Madhan Content
+          </div>
+          <div
+            role="tab"
+            id="panel-2"
+            aria-controls="panel2"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            Mithra Content
+          </div>
+        </div>
+        <div role="tabpanel" id="panel1" aria-labelledby="panel-1  ">
+          madhna POst
+        </div>
+        <div role="tabpanel" id="panel2" aria-labelledby="panel-2">
+          Mithra Post
+        </div>
+      </section>
+    </main>
+    <aside>
+      <ul id="elcre">
+        <li class="item">One</li>
+        <li class="item">Two</li>
+        <li class="item">Three</li>
+      </ul>
+      <script>
+        const firstItem = document.querySelector(".item");
+        console.log(firstItem.textContent); // "One"
+        const newItem = document.createElement("li");
+        newItem.textContent = "second";
+        const list = document.getElementById("elcre");
+        const third = document.querySelector("li:nth-child(2)");
+        list.insertBefore(newItem, third);
+        const allItems = document.querySelectorAll(".item");
+        allItems.forEach((li) => console.log(li.textContent)); // "One", "Two", "Three"
+      </script>
+      <figure>
+        <img src="photo.png" alt="photo" />
+        <figcaption>The Photo <em>About</em> Madhan Mithra Post</figcaption>
+      </figure>
+    </aside>
+    <footer>
+      <address>this content created by Madhanraj</address>
+      <p>all rights <mark>123@reserved</mark></p>
+    </footer>
+  </body>
+</html>

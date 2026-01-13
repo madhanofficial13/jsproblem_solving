@@ -1,0 +1,60 @@
+body{
+    box-sizing: border-box;
+    background-color:bisque;
+}
+
+#head{
+    display:flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: row;
+    gap: 20px;
+}
+.nav{
+    display: flex;
+    gap: 20px;
+    color: blue;
+    list-style: none;
+    text-align: center;
+    text-align: center;
+    background-color: aqua;
+    padding: 10px;
+}
+button:active{
+    background-color: blue;
+}
+input:focus{
+    background-color: aqua;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+input:not(#in){
+    background-color: brown;
+
+}
+ul li:first-child{
+    background-color:red ;
+}
+ul li:nth-child(2){
+    background-color: pink;
+}
+ul li:last-child{
+    background-color: yellow;
+}
+.pass{
+   text-align: end;
+   background-color: aqua;
+   padding: 10px;
+   margin-top: 0px;
+   width: 70px;
+}
+#he{
+    margin: 0px;
+    width: 150px;
+}
+#str{
+    display: inline;
+    width: 80px;
+}

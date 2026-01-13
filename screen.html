@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="name">Name</label>
+    <input
+      aria-describedby="name1"
+      aria-invalid="true"
+      placeholder="Madhan"
+      id="rmail"
+      type="text"
+    />
+    <p id="name1" role="alert">Name Must Be One UpperCase</p>
+    <label for="email">Email</label>
+    <input
+      type="email"
+      aria-describedby="email1"
+      aria-invalid="true"
+      placeholder="madhanjoshva44@gmail.com"
+    />
+    <p id="email1" role="alert">Email Is Invalid Format</p>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      aria-describedby="password"
+      aria-invalid="false"
+      placeholder="*****"
+    />
+    <p id="password" role="alert">Must Be atleast * character</p>
+  </body>
+</html>
