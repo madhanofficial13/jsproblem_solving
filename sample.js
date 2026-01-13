@@ -4395,18 +4395,16 @@ console.log(acuReq);
 let arreq1 = [1, 2, 3, 4, 2, 3, 5, 7, 2, 3, 8];
 
 const sortArray = (arreq1) => {
-
   for (let i = 0; i <= arreq1.length - 1; i++) {
     for (let j = i + 1; j <= arreq1.length - 1; j++) {
       if (arreq1[i] > arreq1[j]) {
         let temp = arreq1[j];
         arreq1[j] = arreq1[i];
         arreq1[i] = temp;
-        
-      } 
+      }
     }
   }
-  return arreq1
+  return arreq1;
 };
 console.log(sortArray(arreq1));
 
@@ -4429,5 +4427,67 @@ const arreEqual = (arreq1, arreq2) => {
 };
 console.log(arreEqual(arreq1, arreq2));
 
-let keys = ["name", "age"]
-let values = ["Madhan Raj", 23]
+let keys = ["name", "age"];
+let values = ["Madhan Raj", 23];
+
+const convertTo = (keys, values) => {
+  let convertObject = {};
+  for (let i = 0; i <= keys.length - 1; i++) {
+    convertObject[keys[i]] = values[i];
+  }
+  return convertObject;
+};
+console.log(convertTo(keys, values));
+if (!Array.prototype.map2) {
+  Array.prototype.map2 = function (callback, initialValue) {
+    let acum = initialValue;
+    let start = 0;
+    if (acum === undefined) {
+      acum = this[0];
+      start = 1;
+    }
+
+    for (let i = start; i <= this.length - 1; i++) {
+      acum = callback(acum, this[i], i, this);
+    }
+    return acum;
+  };
+}
+
+let map1 = [1, 2, 3, 4];
+console.log(map1.map2((acum, i) => acum + i, 0));
+
+let arr3 = [1, 2, 3, 4, 0, 0, 0, 0];
+let arr4 = [3, 4, 5, 6];
+const mergeTwo = (arr3, arr4) => {
+  let n1 = arr3.length;
+  let n2 = arr4.length;
+  let i = n1 - n2 - 1;
+  let j = n2 - 1;
+  let k = n1 - 1;
+  let freq = {};
+  let arrr = [];
+  while (i >= 0 && j >= 0) {
+    if (arr3[i] >= arr4[j] && arr3[i] !== arr4[j]) {
+      arr3[k--] = arr3[i--];
+    } else {
+      arr3[k--] = arr4[j--];
+    }
+  }
+  while (j >= 0) {
+    arr3[k--] = arr4[j--];
+  }
+  for (let ch of arr3) {
+    freq[ch] = (freq[ch] || 0) + 1;
+    if (freq[ch] <= 1) {
+      arrr.push(ch);
+    }
+  }
+  return arrr;
+};
+console.log(mergeTwo(arr3, arr4));
+console.log(arith(2,4));
+function arith(a,b){
+  return a+b;
+}
+
