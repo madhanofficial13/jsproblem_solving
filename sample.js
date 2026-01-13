@@ -3673,7 +3673,6 @@ console.log(caps);
 
 let wordsin = "   I   love   JavaScript   ";
 
-
 let dig = "123a56";
 let digit = false;
 if (/[/\d/]/.test(dig)) {
@@ -3810,69 +3809,67 @@ let passwordCheck =
   );
 console.log(passwordCheck);
 
-let passwords = /^[a-z](?=.*[A-Z])(?=.*\d)(?=.*[@#$%])(?!.*(admin|password|123456))[^\s]{12,}$/.test("radHanRaj@123")
+let passwords =
+  /^[a-z](?=.*[A-Z])(?=.*\d)(?=.*[@#$%])(?!.*(admin|password|123456))[^\s]{12,}$/.test(
+    "radHanRaj@123"
+  );
 console.log(passwords);
 
-
-let num = 1234%1000;
+let num = 1234 % 1000;
 console.log(num);
 
+let freq = {};
+let strng = "swiss";
 
-
-
- let freq = {};
-let strng = "swiss"
-
-for(let i=0;i<strng.length-1;i++){
-    freq[strng.charAt(i)] = (freq[strng.charAt(i)]||0)+1;
+for (let i = 0; i < strng.length - 1; i++) {
+  freq[strng.charAt(i)] = (freq[strng.charAt(i)] || 0) + 1;
 }
 console.log(freq);
-const repeat1 = (strng)=>{
- for(let i=0;i<strng.length-1;i++){
-        if(freq[strng.charAt(i)]===1){
-            return strng.charAt(i);
-        }
+const repeat1 = (strng) => {
+  for (let i = 0; i < strng.length - 1; i++) {
+    if (freq[strng.charAt(i)] === 1) {
+      return strng.charAt(i);
     }
-    return -1;
-}
+  }
+  return -1;
+};
 
 console.log(repeat1(strng));
 
-let perc = (20*50)/100;
-console.log(perc);//10
+let perc = (20 * 50) / 100;
+console.log(perc); //10
 
-let perc1 = (75*40)/100;
-console.log(perc1);//30
+let perc1 = (75 * 40) / 100;
+console.log(perc1); //30
 
-let perc2 = (10*200)/100;//20
-console.log(200+perc2);
+let perc2 = (10 * 200) / 100; //20
+console.log(200 + perc2);
 
-let perc3 = (25*800)/100;
-let perc4 = 800-perc3;
+let perc3 = (25 * 800) / 100;
+let perc4 = 800 - perc3;
 console.log(perc4);
 
-let perc5 = 20-10-(20*10)/100;
+let perc5 = 20 - 10 - (20 * 10) / 100;
 console.log(perc5);
 
 const objiect = {
   name: "A",
   marks: { tamil: 90, eng: 80 },
-  skills: ["JS", "React"]
+  skills: ["JS", "React"],
 };
 
-function deepClone(objiect){
-  if(typeof objiect!=="object" && objiect!==null){
+function deepClone(objiect) {
+  if (typeof objiect !== "object" && objiect !== null) {
     return objiect;
   }
-    let deep=Array.isArray(objiect)?[]:{};
-    for(let key in objiect){
-      deep[key] = objiect[key];
-      if(typeof objiect[key]==="object"){
-          deepClone(objiect[key])
-      }
+  let deep = Array.isArray(objiect) ? [] : {};
+  for (let key in objiect) {
+    deep[key] = objiect[key];
+    if (typeof objiect[key] === "object") {
+      deepClone(objiect[key]);
     }
-return deep;
-
+  }
+  return deep;
 }
 console.log(deepClone(objiect));
 
@@ -3880,112 +3877,109 @@ const flaten1 = {
   name: "A",
   address: {
     city: "Chennai",
-    geo: { lat: 10, lng: 20 }
-  }
+    geo: { lat: 10, lng: 20 },
+  },
 };
 
+const flatten = (flaten1, parentKey = "", result = {}) => {
+  for (let key in flaten1) {
+    let newKey = parentKey ? `${parentKey}${key}` : key;
 
-const flatten = (flaten1,parentKey="",result={})=>{
-  for(let key in flaten1){
-
-  let newKey = parentKey?`${parentKey}${key}`:key;
-
-    if(typeof flaten1[key]==="object"){
-      flaten(flaten1[key],parentKey=key,result);
-    }else{
-      result[newKey] = flaten1[key]
+    if (typeof flaten1[key] === "object") {
+      flaten(flaten1[key], (parentKey = key), result);
+    } else {
+      result[newKey] = flaten1[key];
     }
   }
   return result;
-}
+};
 console.log(flatten(flaten1));
-
 
 const a4 = { x: 10, y: { z: 20 } };
 const b4 = { y: { p: 50 } };
 
 let b6 = {
   ...a4,
-   y:{...a4.y,...b4.y}
-}
+  y: { ...a4.y, ...b4.y },
+};
 console.log(b6);
 
-const deepMerge1 = (a4,b4)=>{
-let deep = {...a4}
-for(let key in b4){
-  if(typeof b4[key]==="object"){
-     deep[key] = deepMerge1(a4[key] || {}, b4[key])
-  }else{
-    deep[key] = b4[key]
+const deepMerge1 = (a4, b4) => {
+  let deep = { ...a4 };
+  for (let key in b4) {
+    if (typeof b4[key] === "object") {
+      deep[key] = deepMerge1(a4[key] || {}, b4[key]);
+    } else {
+      deep[key] = b4[key];
+    }
   }
-}
-return deep;
-}
-console.log(deepMerge1(a4,b4));
+  return deep;
+};
+console.log(deepMerge1(a4, b4));
 
 const a7 = { x: 10, y: { z: 20 } };
 const b7 = { x: 10, y: { z: 2 } };
 
-const mergeTwoObject = (a7,b7)=>{
-  if(a7===b7){
+const mergeTwoObject = (a7, b7) => {
+  if (a7 === b7) {
     return true;
   }
-  
-  if(typeof a7!=="object" && b7 !=="object"){
+
+  if (typeof a7 !== "object" && b7 !== "object") {
     return false;
   }
- let a = Object.keys(a7);
- let b = Object.keys(b7);
+  let a = Object.keys(a7);
+  let b = Object.keys(b7);
 
- if(a.length!==b.length){
-  return false;
- }
-
- for(let key in a7){
- if(!mergeTwoObject(a7[key],b7[key])){
-    return false
+  if (a.length !== b.length) {
+    return false;
   }
- }
 
-return true;
-}
+  for (let key in a7) {
+    if (!mergeTwoObject(a7[key], b7[key])) {
+      return false;
+    }
+  }
 
-console.log(mergeTwoObject(a7,b7));
+  return true;
+};
+
+console.log(mergeTwoObject(a7, b7));
 
 const api = [
   { _id: "u1", name: "A" },
-  { _id: "u2", name: "B" }
+  { _id: "u2", name: "B" },
 ];
 
 let looploop = {};
 
-api.forEach(item=>{
+api.forEach((item) => {
   looploop[item._id] = item;
-})
+});
 console.log(looploop);
 
 const groupObject = [
   { role: "admin", city: "Chennai" },
   { role: "user", city: "Chennai" },
-  { role: "admin", city: "Delhi" }
+  { role: "admin", city: "Delhi" },
 ];
 
-let cont = groupObject.reduce((acum,item)=>{
-  let key = `${item.role}_${item.city}`
-if(!acum[key]){
-  acum[key] = []
-}
-acum[key].push(item)
-return acum
-},{})
+let cont = groupObject.reduce((acum, item) => {
+  let key = `${item.role}_${item.city}`;
+  if (!acum[key]) {
+    acum[key] = [];
+  }
+  acum[key].push(item);
+  return acum;
+}, {});
 console.log(cont);
 
-let input1 = "hello".split("")
+let input1 = "hello".split("");
 console.log(input1);
 
 let start = 0;
-  let end = input1.length-1;
-while(start<=end){ 
+let end = input1.length - 1;
+while (start <= end) {
   let temp = input1[start];
   input1[start] = input1[end];
   input1[end] = temp;
@@ -3994,268 +3988,253 @@ while(start<=end){
 }
 console.log(input1.join(""));
 
-const checkPolli = (str)=>{
-  let arr = str.split("")
+const checkPolli = (str) => {
+  let arr = str.split("");
   let l = 0;
-  let r = str.length-1;
-  while(l<=r){
-    [arr[l],arr[r]] = [arr[r],arr[l]]
+  let r = str.length - 1;
+  while (l <= r) {
+    [arr[l], arr[r]] = [arr[r], arr[l]];
     l++;
     r--;
   }
 
   const rev = arr.join("");
-  if(rev!==str){
+  if (rev !== str) {
     return false;
   }
 
   return true;
-
-}
+};
 
 console.log(checkPolli("hello"));
 
-let freqe = {}
+let freqe = {};
 let frequence = "aaabbbccc".split("");
 
-frequence.forEach(item=>{
-  freqe[item] = (freqe[item]||0)+1;
-})
+frequence.forEach((item) => {
+  freqe[item] = (freqe[item] || 0) + 1;
+});
 console.log(freqe);
 
-const nonRepeat = (str)=>{
+const nonRepeat = (str) => {
   let freq = {};
-  for(let ch of str){
-    freq[ch] = (freq[ch]||0)+1
+  for (let ch of str) {
+    freq[ch] = (freq[ch] || 0) + 1;
   }
-  for(let i=0;i<str.length-1;i++){
-    if(freq[str.charAt(i)]===1){
-      return str.charAt(i)
+  for (let i = 0; i < str.length - 1; i++) {
+    if (freq[str.charAt(i)] === 1) {
+      return str.charAt(i);
     }
   }
-  return -1
-}
+  return -1;
+};
 
 console.log(nonRepeat("aabbcdde"));
 
-const checkAnagram = (a1,a2)=>{
-  if(a1.length!==a2.length){
+const checkAnagram = (a1, a2) => {
+  if (a1.length !== a2.length) {
     return false;
   }
-  let freq = {}
-  for(let ch of a1){
-      freq[ch] = (freq[ch]||0)+1;
+  let freq = {};
+  for (let ch of a1) {
+    freq[ch] = (freq[ch] || 0) + 1;
   }
-  for(let ch of a2){
-    if(!freq[ch]){
+  for (let ch of a2) {
+    if (!freq[ch]) {
       return false;
     }
     freq[ch]--;
   }
 
- 
-return true;
-}
-console.log(checkAnagram("listen","silent"));
+  return true;
+};
+console.log(checkAnagram("listen", "silent"));
 
-const reverseWord = (str)=>{
- 
+const reverseWord = (str) => {
   let arr = str.trim().split(" ");
-console.log(arr.length);
+  console.log(arr.length);
 
-  for(let i=0;i<Math.floor(str.length/2);i++){
+  for (let i = 0; i < Math.floor(str.length / 2); i++) {
     let temp = arr[i];
-    arr[i] = arr[str.length-1-i];
-    arr[str.length-1-i] = temp;
+    arr[i] = arr[str.length - 1 - i];
+    arr[str.length - 1 - i] = temp;
   }
 
-  return arr.join(" ")
-}
+  return arr.join(" ");
+};
 
 console.log(reverseWord(" i love javascript "));
 
-const countVowels = (str)=>{
-let vouwesl = 0;
-let consonant = 0;
-for(let ch of str){
-  if(ch==="a"||ch==="e"||ch==="i"||ch==="o"||ch==="u"){
-    vouwesl++;
-  }else{
-    consonant++;
-  }
-}
-
-return {vouwesl,consonant}
-}
-console.log(countVowels("madhanraj"));
-
-const model = ()=>{
-  let vouwesl =new Set("aeiouAEIOUmadhan")
-  let v=0;
-  let c=0;
-  for(ch of vouwesl){
-    if(/[a-zA-Z]/.test(ch)){
-      vouwesl.has(ch)?v++:c++
+const countVowels = (str) => {
+  let vouwesl = 0;
+  let consonant = 0;
+  for (let ch of str) {
+    if (ch === "a" || ch === "e" || ch === "i" || ch === "o" || ch === "u") {
+      vouwesl++;
+    } else {
+      consonant++;
     }
   }
-  return {v,c}
-}
+
+  return { vouwesl, consonant };
+};
+console.log(countVowels("madhanraj"));
+
+const model = () => {
+  let vouwesl = new Set("aeiouAEIOUmadhan");
+  let v = 0;
+  let c = 0;
+  for (ch of vouwesl) {
+    if (/[a-zA-Z]/.test(ch)) {
+      vouwesl.has(ch) ? v++ : c++;
+    }
+  }
+  return { v, c };
+};
 
 console.log(model());
 
-const word = "aabbcc"
-const duplicate = (word)=>{
-const seen = new Set("")
-let res = ""
-for(let ch of word){
-  if(!seen.has(ch)){
-    seen.add(ch)
-    res +=ch
+const word = "aabbcc";
+const duplicate = (word) => {
+  const seen = new Set("");
+  let res = "";
+  for (let ch of word) {
+    if (!seen.has(ch)) {
+      seen.add(ch);
+      res += ch;
+    }
   }
-
-}
-return res;
-}
+  return res;
+};
 console.log(duplicate(word));
 
-const wordlength = "Hello World"
+const wordlength = "Hello World";
 
-const lenghtword = (wordlength)=>{
-  const trim = wordlength.trim()
-let count = 0;
-  for(let ch of trim){
+const lenghtword = (wordlength) => {
+  const trim = wordlength.trim();
+  let count = 0;
+  for (let ch of trim) {
     console.log(ch);
-    if(ch!==" "){
-      count +=1
-    }else{
+    if (ch !== " ") {
+      count += 1;
+    } else {
       count = 0;
     }
-
   }
   return count;
-
-}
+};
 console.log(lenghtword(wordlength));
 
+const longeest = "abcabcbb";
 
-
-const longeest = "abcabcbb"
-
-
-
-
-const sumOfSub = (arr,k)=>{
-  let windowSum = 0
-  for(let i=0;i<k;i++){
-    windowSum +=arr[i]
+const sumOfSub = (arr, k) => {
+  let windowSum = 0;
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
   }
   console.log(windowSum);
-  
-  let maxSum = windowSum
-  for(let i=k;i<arr.length;i++){
-    windowSum += arr[i]-arr[i-k]
-      maxSum = windowSum
-      maxSum = Math.max(maxSum,windowSum) 
-  }
-return maxSum
-}
 
-console.log(sumOfSub([1,2,3,4,5,6],3));
+  let maxSum = windowSum;
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i] - arr[i - k];
+    maxSum = windowSum;
+    maxSum = Math.max(maxSum, windowSum);
+  }
+  return maxSum;
+};
+
+console.log(sumOfSub([1, 2, 3, 4, 5, 6], 3));
 
 const transactions2 = [
   { type: "income", amount: 5000, date: "2024/01/10" },
   { type: "expense", amount: 1200, date: "2024/01/15" },
-  { type: "income", amount: 3000, date: "2024/02/05" }
+  { type: "income", amount: 3000, date: "2024/02/05" },
 ];
 
-
-const tran6 = transactions2.reduce((acum,item)=>{
-  const month = new Date(item.date).toLocaleString("en-US",{month:"short"})
-  if(!acum[month]){
-    acum[month]= {income:0,expense:0}
+const tran6 = transactions2.reduce((acum, item) => {
+  const month = new Date(item.date).toLocaleString("en-US", { month: "short" });
+  if (!acum[month]) {
+    acum[month] = { income: 0, expense: 0 };
   }
-  acum[month][item.type] +=1
-  return acum
-},{})
+  acum[month][item.type] += 1;
+  return acum;
+}, {});
 console.log(tran6);
 
-const tran1 = transactions2.reduce((acum,item)=>{
-  const month = new Date(item.date).toLocaleString("US-en",{month:"short"})
-  if(!acum[month]){
-    acum[month] = {income:0,expense:0}
+const tran1 = transactions2.reduce((acum, item) => {
+  const month = new Date(item.date).toLocaleString("US-en", { month: "short" });
+  if (!acum[month]) {
+    acum[month] = { income: 0, expense: 0 };
   }
-  acum[month][item.type] +=item.amount
-  return acum
-},{})
+  acum[month][item.type] += item.amount;
+  return acum;
+}, {});
 
 console.log(tran1);
-
 
 const student1 = [
   { name: "A", grade: "A" },
   { name: "B", grade: "B" },
-  { name: "C", grade: "A" }
+  { name: "C", grade: "A" },
 ];
 
-const stuen = student1.reduce((acum,item)=>{
-  if(!acum[item.grade]){
-    acum[item.grade] = []
+const stuen = student1.reduce((acum, item) => {
+  if (!acum[item.grade]) {
+    acum[item.grade] = [];
   }
-  acum[item.grade].push(item.name)
+  acum[item.grade].push(item.name);
   return acum;
-},[])
+}, []);
 console.log(stuen);
 
 const employeees = [
   { dept: "IT", salary: 50000 },
   { dept: "HR", salary: 30000 },
-  { dept: "IT", salary: 40000 }
+  { dept: "IT", salary: 40000 },
 ];
 
-const emply = employeees.reduce((acum,item)=>{
+const emply = employeees.reduce((acum, item) => {
+  acum[item.dept] = (acum[item.dept] || 0) + item.salary;
 
-  acum[item.dept] = (acum[item.dept]||0)+item.salary
-
-return acum;
-},{})
+  return acum;
+}, {});
 console.log(emply);
 
 const words = ["hi", "hello", "bye", "world"];
 
-const words1 = words.reduce((acum,item)=>{
-console.log(item.length);
+const words1 = words.reduce((acum, item) => {
+  console.log(item.length);
 
-    acum[item.length] = (acum[item.length] || 0) + 1
-  
-return acum
-},{})
+  acum[item.length] = (acum[item.length] || 0) + 1;
+
+  return acum;
+}, {});
 console.log(words1);
 const orderses = [
   { id: 1, status: "delivered" },
   { id: 2, status: "pending" },
-  { id: 3, status: "delivered" }
+  { id: 3, status: "delivered" },
 ];
 
-const reduceses = orderses.reduce((acum,item)=>{
-
-  if(!acum[item.status]){
-    acum[item.status] = []
+const reduceses = orderses.reduce((acum, item) => {
+  if (!acum[item.status]) {
+    acum[item.status] = [];
   }
-  acum[item.status].push(item.id)
-return acum
-},{})
+  acum[item.status].push(item.id);
+  return acum;
+}, {});
 
 console.log(reduceses);
 
 const freqee = "javascript";
 
-const freee = (freqee)=>{
-  let free = {}
-  for(let ch of freqee){
-    free[ch] = (free[ch]||0)+1
+const freee = (freqee) => {
+  let free = {};
+  for (let ch of freqee) {
+    free[ch] = (free[ch] || 0) + 1;
   }
   return free;
-}
+};
 
 console.log(freee(freqee));
 
@@ -4263,87 +4242,76 @@ const trans = [
   { id: 1, type: "income", amount: 5000, date: "2024-01-10" },
   { id: 2, type: "expense", amount: 2000, date: "2024-01-12" },
   { id: 3, type: "income", amount: 3000, date: "2024-02-05" },
-  { id: 4, type: "expense", amount: 1500, date: "2024-02-07" }
+  { id: 4, type: "expense", amount: 1500, date: "2024-02-07" },
 ];
 
-const monthlyAdminDahsBoard = (trans)=>{
+const monthlyAdminDahsBoard = (trans) => {
+  return trans.reduce((acum, item) => {
+    const month = new Date(item.date).toLocaleString("en-US", {
+      month: "short",
+    });
 
- return trans.reduce((acum,item)=>{
-
-    const month = new Date(item.date).toLocaleString("en-US",{month:"short"})
-
-    if(!acum[month]){
-      acum[month] = {income:0,expense:0}
+    if (!acum[month]) {
+      acum[month] = { income: 0, expense: 0 };
     }
-      acum[month][item.type]  += item.amount
-    
+    acum[month][item.type] += item.amount;
+
     return acum;
-
-  },{})
-
-}
+  }, {});
+};
 
 let aa1 = 10;
 let bb1 = 20;
 let cc1 = 30;
-const largestNum = (aa1,bb1,cc1)=>{
-if(aa1>bb1){
-  if(aa1>cc1){
-   return aa1
-    
-  }else if(aa1<cc1){
-    return cc1
-    
+const largestNum = (aa1, bb1, cc1) => {
+  if (aa1 > bb1) {
+    if (aa1 > cc1) {
+      return aa1;
+    } else if (aa1 < cc1) {
+      return cc1;
+    }
+  } else if (aa1 < bb1) {
+    if (bb1 > cc1) {
+      return bb1;
+    } else if (bb1 < cc1) {
+      return cc1;
+    }
   }
-}else if(aa1<bb1){
-  if(bb1>cc1){
-    return bb1
-    
-  }else if(bb1<cc1){
-    return cc1
-    
-  }
-}
-}
+};
 
-console.log(largestNum(aa1,bb1,cc1));
+console.log(largestNum(aa1, bb1, cc1));
 
 let countVowel = "madhanraj";
 let vowel = 0;
 
-for(let i=0;i<countVowel.length-1;i++){
+for (let i = 0; i < countVowel.length - 1; i++) {
   let ch = countVowel.charAt(i);
-  if(ch==="a"||ch==="e"||ch==="i"||ch==="o"||ch==="u"){
+  if (ch === "a" || ch === "e" || ch === "i" || ch === "o" || ch === "u") {
     vowel++;
   }
 }
 console.log(vowel);
 
-for(let i=2;i<=100;i++){
-  if(i%3===0){
+for (let i = 2; i <= 100; i++) {
+  if (i % 3 === 0) {
     console.log("fizz");
-    
-  }else if(i%5===0){
+  } else if (i % 5 === 0) {
     console.log("buzz");
-    
-  }else if(i%5===0 && i%3===0){
+  } else if (i % 5 === 0 && i % 3 === 0) {
     console.log("fizzbuzz");
-    
-  }else{
+  } else {
     console.log(i);
-    
   }
 }
 
 let fact = 1;
 
-for(let i=1;i<=5;i++){
- 
+for (let i = 1; i <= 5; i++) {
   fact = fact * i;
 }
 console.log(fact);
 
-let swap1= 10;
+let swap1 = 10;
 let swap2 = 20;
 
 swap1 = swap1 + swap2;
@@ -4352,102 +4320,114 @@ swap1 = swap1 - swap2;
 console.log(swap1);
 console.log(swap2);
 
-let sum = [1, 2, 3, 4,4];
- let freq10 = {};
-let dup =[]
- sum.forEach(i=>{
+let sum = [1, 2, 3, 4, 4];
+let freq10 = {};
+let dup = [];
+sum.forEach((i) => {
   freq10[i] = (freq10[i] || 0) + 1;
-  if(freq10[i]<=1){
-    dup.push(i)
+  if (freq10[i] <= 1) {
+    dup.push(i);
   }
- })
- console.log(dup);
- 
+});
+console.log(dup);
 
-let sum1 = sum.reduce((acum,i)=>acum+i,0);
-let sum3 =0;
-let sum2 = sum.filter(i=>i>sum3?sum3 = i:i)
+let sum1 = sum.reduce((acum, i) => acum + i, 0);
+let sum3 = 0;
+let sum2 = sum.filter((i) => (i > sum3 ? (sum3 = i) : i));
 console.log(sum1);
 console.log(sum3);
 
-let reversee = "madhanraj"
-const reve1 = (reverse)=>{
+let reversee = "madhanraj";
+const reve1 = (reverse) => {
   let spli = reverse.split("");
   let sp = 0;
-  let ep = reverse.length-1;
-  while(sp<ep){
+  let ep = reverse.length - 1;
+  while (sp < ep) {
     let temp = spli[sp];
     spli[sp] = spli[ep];
     spli[ep] = temp;
     sp++;
     ep--;
   }
-  return spli.join("")
-}
+  return spli.join("");
+};
 console.log(reve1(reversee));
 
-const numEveOrOdd = (num)=>{
+const numEveOrOdd = (num) => {
   let odd = true;
-  if(num%2===0){
+  if (num % 2 === 0) {
     return odd;
-  }else{
+  } else {
     return false;
   }
-}
+};
 console.log(numEveOrOdd(10));
 
-const checkPolli1 = (check)=>{
+const checkPolli1 = (check) => {
   let check1 = "";
-  for(let i =check.length-1 ;i>=0;i--){
+  for (let i = check.length - 1; i >= 0; i--) {
     check1 += check[i];
   }
-  if(check1===check){ 
+  if (check1 === check) {
     console.log("string is ploindrome");
-    return true;  
+    return true;
   }
-  return false
-
-}
+  return false;
+};
 
 console.log(checkPolli1("madae"));
 
 let fact1 = 1;
 
-for(let i = 1; i<=5 ; i++){
-  fact1 *=i;
+for (let i = 1; i <= 5; i++) {
+  fact1 *= i;
 }
 console.log(fact1);
 
-let countAccu = ["a","b","a","c","b"];
-let acuReq = {}
-countAccu.forEach(i=>{
-acuReq[i] = (acuReq[i] || 0) + 1;
-return acuReq;
-})
+let countAccu = ["a", "b", "a", "c", "b"];
+let acuReq = {};
+countAccu.forEach((i) => {
+  acuReq[i] = (acuReq[i] || 0) + 1;
+  return acuReq;
+});
 console.log(acuReq);
 
-let arreq1 = [1, 2, 3, 4];
-let arreq2 = [1, 2, 3, ];
+let arreq1 = [1, 2, 3, 4, 2, 3, 5, 7, 2, 3, 8];
 
-const arreEqual = (arreq1,arreq2)=>{
+const sortArray = (arreq1) => {
+
+  for (let i = 0; i <= arreq1.length - 1; i++) {
+    for (let j = i + 1; j <= arreq1.length - 1; j++) {
+      if (arreq1[i] > arreq1[j]) {
+        let temp = arreq1[j];
+        arreq1[j] = arreq1[i];
+        arreq1[i] = temp;
+        
+      } 
+    }
+  }
+  return arreq1
+};
+console.log(sortArray(arreq1));
+
+let arreq2 = [1, 2, 3];
+
+const arreEqual = (arreq1, arreq2) => {
   let n1 = arreq1.length;
   let n2 = arreq2.length;
 
-  if(n1!==n2){
+  if (n1 !== n2) {
     return false;
   }
 
-  for(let i=0;i<=n1-1;i++){
-    if(arreq1[i]!==arreq2[i]){
+  for (let i = 0; i <= n1 - 1; i++) {
+    if (arreq1[i] !== arreq2[i]) {
       return false;
     }
-
   }
   return true;
+};
+console.log(arreEqual(arreq1, arreq2));
 
-}
-console.log(arreEqual(arreq1,arreq2));
-
-
-
-
+let keys = ["name", "age"]
+let values = ["Madhan Raj", 23]
