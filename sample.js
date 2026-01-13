@@ -4411,5 +4411,43 @@ const checkPolli1 = (check)=>{
 
 console.log(checkPolli1("madae"));
 
+let fact1 = 1;
+
+for(let i = 1; i<=5 ; i++){
+  fact1 *=i;
+}
+console.log(fact1);
+
+let countAccu = ["a","b","a","c","b"];
+let acuReq = {}
+countAccu.forEach(i=>{
+acuReq[i] = (acuReq[i] || 0) + 1;
+return acuReq;
+})
+console.log(acuReq);
+
+let arreq1 = [1, 2, 3, 4];
+let arreq2 = [1, 2, 3, ];
+
+const arreEqual = (arreq1,arreq2)=>{
+  let n1 = arreq1.length;
+  let n2 = arreq2.length;
+
+  if(n1!==n2){
+    return false;
+  }
+
+  for(let i=0;i<=n1-1;i++){
+    if(arreq1[i]!==arreq2[i]){
+      return false;
+    }
+
+  }
+  return true;
+
+}
+console.log(arreEqual(arreq1,arreq2));
+
+
 
 
