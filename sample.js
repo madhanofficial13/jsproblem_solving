@@ -4486,8 +4486,194 @@ const mergeTwo = (arr3, arr4) => {
   return arrr;
 };
 console.log(mergeTwo(arr3, arr4));
-console.log(arith(2,4));
-function arith(a,b){
-  return a+b;
+
+function runOnce(fn) {
+  let executed = false;
+  return function () {
+    if (!executed) {
+      console.log(executed);
+      executed = true;
+      return fn();
+    }
+  };
+}
+let run = runOnce(() => {
+  console.log("hii onece");
+});
+run();
+run();
+run();
+
+/* function closure() {
+  let count = 0;
+  return function () {
+    count++;
+    console.log(count);
+  };
 }
 
+let close = closure();
+close();
+close(); */
+
+for (let i = 1; i <= 3; i++) {
+  setTimeout(() => {
+    console.log(i);
+  }, i * 1000);
+}
+
+function wait() {
+  return new Promise((resolve) => resolve("hiii"));
+}
+
+function wait1() {
+  return new Promise((resolve) => setTimeout(() => resolve("welcome"), 2000));
+}
+
+async function promise2() {
+  const awai = await wait1();
+  return awai;
+}
+
+async function promise1() {
+  const awai = await wait();
+  return awai;
+}
+
+Promise.all([promise1(), promise2()]).then((res) => console.log(res));
+
+async function fetchData() {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: "madhan",
+        email: "madhanjoshva44@gmail.com",
+        age: 19,
+      }),
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function resultData() {
+  const data = await fetchData();
+
+  return data;
+}
+
+let dat1 = resultData();
+dat1.then((res) => console.log(res));
+
+function OnceOnec(fn) {
+  let executed = false;
+  return function (...args) {
+    if (!executed) {
+      executed = true;
+      return fn(...args);
+    }
+  };
+}
+const onceFunctionn = OnceOnec((...args) => console.log(args));
+onceFunctionn(1, 2, 3, 4, 5, 6, 7);
+onceFunctionn();
+onceFunctionn();
+
+function deBounce1(fn, delay) {
+  let timeOut = 0;
+  return function (...args) {
+    clearTimeout(timeOut);
+    console.log("timeout", timeOut);
+    timeOut = setTimeout(() => {
+      return fn(...args);
+    }, delay);
+  };
+}
+
+const deb = deBounce1(() => console.log("madhan"), 3000);
+deb();
+deb();
+
+function throttel(fn, delay) {
+  let lastcall = 0;
+  return function (...args) {
+    let now = Date.now();
+    console.log("hii are you", now);
+    if (now - lastcall >= delay) {
+      lastcall = now;
+      return fn(...args);
+    }
+  };
+}
+const thro = throttel(() => console.log("funtion is nothig to return"), 3000);
+thro();
+thro();
+
+const detectType = (value) => {
+  if (typeof value === "number") {
+    return typeof Number;
+  } else if (typeof value === "string") {
+    return typeof String;
+  } else if (typeof value === "boolean") {
+    return typeof Boolean;
+  } else if (typeof value === "undefined") {
+    return undefined;
+  } else if (typeof value === "symbol") {
+    return typeof Symbol;
+  } else if (typeof value === "object") {
+    return typeof Object;
+  }
+};
+
+console.log("thorttle", detectType("madhan"));
+
+const productsSection = [
+  { id: 1, name: "T-shirt", price: 300 },
+  { id: 2, name: "Jeans", price: 1200 },
+  { id: 3, name: "Cap", price: 150 },
+];
+
+const cartSection = {
+  1: 2,
+  2: 1,
+  3: 3,
+};
+
+const productTotal = (productsSection, cartSection) => {
+  return productsSection.reduce((total, item) => {
+    const qty = cartSection[item.id] || 0;
+
+    return total + item.price * qty;
+  }, 0);
+};
+console.log(productTotal(productsSection, cartSection));
+
+const productsDesire = [
+  { id: 1, name: "T-shirt", category: "clothing", price: 300 },
+  { id: 2, name: "Jeans", category: "clothing", price: 1200 },
+  { id: 3, name: "Cap", category: "accessories", price: 150 },
+  { id: 4, name: "Socks", category: "clothing", price: 100 },
+  { id: 5, name: "Watch", category: "accessories", price: 3500 },
+];
+
+const DesireProduct = (productsDesire) => {
+  return productsDesire.reduce((acum, item) => {
+    if (
+      item.category === "clothing" &&
+      item.price >= 300 &&
+      1000 >= item.price
+    ) {
+      acum[item.category] = item;
+    }
+    return acum;
+  }, {});
+};
+console.log(productsDesire);
