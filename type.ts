@@ -14,6 +14,7 @@ let tupe:[number,string] = [25,"madhan"]
 console.log(tupe);
 
 
+
 function add(a:number,b:number):number{
 
     return a + b;
@@ -77,6 +78,7 @@ interface Admin extends User{
 interface Employee{
     [key:string]:number
 }
+
 
 const em:Employee = {
     math:40,
@@ -402,7 +404,6 @@ function UserIn(but:button){
 }
 
 
-
 let id1:string|number ;
 
 id1 = "number"
@@ -533,7 +534,7 @@ class Car{
 
 const car = new Car("madhan","madhanjoshva44@gmail.com")
 
-console.log(car instanceof Car);
+console.log("instance off",car instanceof Car);
 
 type Bject = {
     price:number,
@@ -542,8 +543,13 @@ type Bject = {
 
 let key:keyof Bject
 
+
+
 function Key(object:Bject, key:keyof Bject){
+      console.log(key);
     return object[key];
+  
+    
 }
 let obj:Bject={
     price:12345,
@@ -688,7 +694,7 @@ function handleStatus(status: Status) {
       return "Loading...";
     case "success":
       return "Done!";
-      case "error":
+    case "error":
         return "something went wrong"
       default:
       return  exashting(status);
@@ -722,9 +728,14 @@ let ob:Use1={
     name:"email"
 }
 
+
+
 function getValue(obj: Use1, key: keyof Use1) {
   return obj[key];
 }
+
+
+
 console.log(getValue(ob,"id"));
 
 type Shape =
@@ -740,3 +751,4 @@ function area(shape: Shape) : number{
 }
 
 console.log(area({type:"circle",radius:123}));
+

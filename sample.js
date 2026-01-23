@@ -4555,12 +4555,12 @@ async function fetchData() {
         age: 19,
       }),
     });
-
     const data = await res.json();
-
     return data;
   } catch (error) {
     console.log(error);
+  }finally{
+    console.log("always execute");
   }
 }
 
@@ -4609,7 +4609,7 @@ function throttel(fn, delay) {
     console.log("hii are you", now);
     if (now - lastcall >= delay) {
       lastcall = now;
-      return fn(...args);
+      return fn.apply(...args);
     }
   };
 }
@@ -4617,7 +4617,7 @@ const thro = throttel(() => console.log("funtion is nothig to return"), 3000);
 thro();
 thro();
 
-const detectType = (value) => {
+/* const detectType = (value) => {
   if (typeof value === "number") {
     return typeof Number;
   } else if (typeof value === "string") {
@@ -4631,9 +4631,10 @@ const detectType = (value) => {
   } else if (typeof value === "object") {
     return typeof Object;
   }
-};
+}; */
 
-console.log("thorttle", detectType("madhan"));
+/* console.log("Deetect type for any value", detectType("madhan")); */
+
 
 const productsSection = [
   { id: 1, name: "T-shirt", price: 300 },
@@ -4647,6 +4648,9 @@ const cartSection = {
   3: 3,
 };
 
+
+
+
 const productTotal = (productsSection, cartSection) => {
   return productsSection.reduce((total, item) => {
     const qty = cartSection[item.id] || 0;
@@ -4656,6 +4660,8 @@ const productTotal = (productsSection, cartSection) => {
 };
 console.log(productTotal(productsSection, cartSection));
 
+
+
 const productsDesire = [
   { id: 1, name: "T-shirt", category: "clothing", price: 300 },
   { id: 2, name: "Jeans", category: "clothing", price: 1200 },
@@ -4664,16 +4670,382 @@ const productsDesire = [
   { id: 5, name: "Watch", category: "accessories", price: 3500 },
 ];
 
+const produ1 = [...productsDesire,  { id: 6, name: "pant", category: "glosarry", price: 4500 },]
+console.log(produ1);
+
+
 const DesireProduct = (productsDesire) => {
-  return productsDesire.reduce((acum, item) => {
-    if (
-      item.category === "clothing" &&
-      item.price >= 300 &&
-      1000 >= item.price
-    ) {
-      acum[item.category] = item;
-    }
-    return acum;
-  }, {});
+  return Object.fromEntries(
+    Object.entries(
+      productsDesire.reduce((acum, item) => {
+        if (
+          item.category === "clothing" &&
+          item.price >= 300 &&
+          1000 >= item.price
+        ) {
+          acum[item.id] = item;
+        }
+        return acum;
+      }, {})
+    )
+  );
 };
-console.log(productsDesire);
+console.log(DesireProduct(productsDesire));
+
+console.log(/^[a-z]\d+@[a-z]+\.[a-z]{3}$/.test("madhanjos44hva@gmail.com"));
+
+const arr2 = Array.from({length:20},(_,i)=>i+1);
+console.log(arr2);
+
+const nums1 = [1,2,3,4,4,4,5,6,5,6,6,7,8];
+
+const nums4 = Array.from(new Set(nums1));
+console.log(nums4);
+
+const s1 = new Set();
+
+s1.add(1);
+s1.add(2);
+s1.add(3);
+console.log(s1.size);;
+console.log("check has",s1.has(3));
+console.log(s1.delete(2));
+s1.clear();
+console.log(s1.size);
+
+const s2 = new Set();
+let biji = {a:2}
+
+s2.add(biji);
+s2.add(biji);
+console.log(s2.size);
+
+const A1 = new Set([1,2,3]);
+const B1 = new Set([3,4,5]);
+
+const unon =new Set([...A1,...B1]);
+console.log(unon);
+
+let intersection =new Set([...A1].filter(x=>B1.has(x)));
+console.log(intersection);
+
+let deference = new Set([...A1].filter(x=>!B1.has(x)));
+console.log(deference);
+
+let flat1 = [1,2,3,[2,3,4],[1,[2,[3,2,3,4]]]].flat(2);
+console.log(flat1);
+
+const null1 = [1, null, [2, null, 3]].flatMap(x=>x==null?[]:x);
+
+console.log(null1);
+
+const users11 = [
+  { name: "A", orders: [101, 102] },
+  { name: "B", orders: [103] },
+  { name: "C", orders: [104, 105] }
+];
+
+let flat2 = users11.flatMap(item=>item.orders);
+console.log(flat2);
+
+const chats = [
+  { room: "A", messages: ["hi", "hello"] },
+  { room: "B", messages: ["hey"] }
+];
+let chats1 = chats.flatMap(item=>item.messages)
+
+console.log(chats1);
+
+const scores1 = [50, null, 80, undefined, 90];
+
+let scores2 = scores1.flatMap(item=>item==null && item ===undefined?[]:item)
+
+console.log(scores2);
+
+const categories = ["Electronics", ["Mobiles", ["Android", "iOS"]]];
+let cat = categories.flat(2)
+console.log(cat);
+
+
+let maj = [3, 3, 4, 3, 5, 3,5,3,2,2,2,2,2,2,2,2,2,2,2,2];
+
+const majar = (maj)=>{
+  let freq = {}
+  let n = maj.length;
+
+ 
+  for(let key of maj){
+    freq[key] = (freq[key] || 0) + 1;
+    if(freq[key]>Math.floor(n/2)){
+      return key;
+    }
+  }
+
+
+}
+console.log("maj",majar(maj));
+
+const OddEven = (value=12)=>{
+  if(value%2===0){
+    console.log("value is Even")
+  }else{
+    console.log("value is Odd")
+  }
+}
+OddEven();
+
+const largestNumber = ()=>{
+  let a=10;
+  let b = 30;
+  let c=40;
+  if(a>b){
+    if(a>c){
+      return a
+    }else{
+      return c
+    }
+  }else if(b>a){
+    if(b>c){
+      return b
+    }else{
+      return c
+    }
+  }
+}
+
+console.log(largestNumber());
+
+const swap = (a,b)=>{
+
+  a = a+b;
+  b = a-b;
+  a = a-b;
+
+  return {a,b}
+
+}
+
+console.log(swap(10,20));
+
+/* const reverseNumber = (num)=>{
+let reverse ;
+  while(num!==0){
+    let rem = num%10;
+    reverse = reverse*10+rem;
+    num /=num;
+  }
+return reverse;
+}
+console.log(reverseNumber(23456)); */
+
+const reversString = (str)=>{
+  let sp = 0, ep = str.length
+  let char = str.split("")
+  while(sp<ep){
+    let temp = char[sp];
+    char[sp] = char[ep];
+    char[ep] = temp;
+    sp++;
+    ep--;
+  }
+  return new String(str);
+}
+
+console.log(reversString("madhanraj"));
+
+const fact5 = (num)=>{
+  let fact = 1
+  for(let i=1;i<=num;i++){
+    fact = fact *i;
+  }
+  return fact
+}
+console.log(fact5(5));
+
+const fibnaci = (n)=>{
+  let a=0,b=1
+  for(let i=1;i<=n;i++){
+    let temp = a+b;
+    b = a;
+    a = temp;
+    console.log(temp);
+    
+  }
+}
+console.log(fibnaci(10));
+
+const sumOf = (num)=>{
+  let sum = 0 ;
+  while(num!=0){
+    let rem = num%10;
+    sum = sum+rem;
+    num /=10
+  }
+  return sum;
+}
+
+console.log(sumOf(123));
+
+const gcd = (a,b)=>{
+  while(b!==0){
+    let temp = b;
+    b = a%b;
+    a = temp;
+  }
+  return a;
+}
+const lcm = (a,b)=>{
+  return (a+b)/gcd(a,b);
+}
+console.log(gcd(12,6));
+console.log(lcm(12,6));
+
+const counDigit = (num)=>{
+  let count=0;
+  while(num!==0){
+    num = Math.floor(num/10)
+    count +=1;
+  }
+  return count;
+}
+console.log("count",counDigit(123));
+
+const square = (num)=>{
+  let low = 0
+  let high = num/2;
+  let mid ;
+  let res;
+  while(low<=high){
+    mid = (low+high)/2;
+   let square1 = mid*mid;
+    if(num===square1){
+      return mid;
+    }else if(mid>num){
+      high = mid-1;
+    }else{
+      low = mid+1;
+      res = mid
+    }
+  }
+  return res;
+}
+console.log(square(36));
+
+let maxArray = [2,3,4,4,8,5,6]
+
+const maxarray1 = (maxArray)=>{
+  let max = maxArray[0];
+  let min = maxArray[0];
+for(let i=1;i<=maxArray.length;i++){
+  if(maxArray[i]>max){
+    max = maxArray[i];
+  }else if(maxArray[i]<min){
+    min = maxArray[i]
+  }
+}
+return {max,min}
+}
+
+console.log(maxarray1(maxArray));
+
+const sumOfArray = (maxArray)=>{
+  let sum = 0;
+  for(let num of maxArray){
+    sum = sum + num
+  }
+  return sum;
+}
+console.log(sumOfArray(maxArray));
+
+const sortArray1 = (maxArray)=>{
+
+  for(let i=0;i<=maxArray.length-1;i++){
+    for(let j=i+1;j<=maxArray.length;j++){
+      if(maxArray[i]>maxArray[j]){
+        let temp = maxArray[j]
+        maxArray[j] = maxArray[i]
+        maxArray[i] = temp;
+      }
+    }
+  }
+  return maxArray;
+}
+console.log(sortArray1(maxArray));
+const sortArray2 = (maxArray)=>{
+
+  for(let i=0;i<=maxArray.length-1;i++){
+    for(let j=i+1;j<=maxArray.length;j++){
+      if(maxArray[i]<maxArray[j]){
+        let temp = maxArray[j]
+        maxArray[j] = maxArray[i]
+        maxArray[i] = temp;
+      }
+    }
+  }
+  return maxArray;
+}
+console.log(sortArray2(maxArray));
+
+/* let upperCase = "javascript"
+
+const upperCase1 = (upperCase)=>{
+
+  for(let ch of upperCase){
+    if(/[a-z]/.test(ch)){
+
+    }
+  }
+
+} */
+
+  let long = "I love javascript programming"
+
+  const longest = (long)=>{
+      let ch = long.split(" ");
+      let maxLength = ch[0];
+      for(let char of ch){
+        if(char.length>maxLength.length){
+          maxLength = char
+        }
+      }
+      return maxLength
+  }
+  console.log(longest(long));
+  
+const wordSentence1 = "I love JavaScript"
+
+const word1 = (wordCount)=>{
+ let trim = wordCount.trim("");
+ let arrayStr = trim.split(" ");
+ console.log(arrayStr);
+ 
+ let count = 1;
+  for(let i=0;i<=wordCount.length-1;i++){
+    if(wordCount[i]===" "){
+      count++;
+    }
+  }
+  return count;
+}
+console.log("count",word1(wordSentence1));
+
+let replaceWord1 = "I love JS"
+
+const replaceWord = (replaceWord1)=>{
+  let words = replaceWord1.split(" ");
+  let resul = "";
+  for(let word of words){
+    let add = false;
+    if(word==="JS"){
+      word ="javascript"
+      resul = resul+" "+word
+      add = true;
+    }
+    if(add){
+      return resul
+    }
+ resul = resul+" "+word;
+  }
+  return resul;
+}
+console.log(replaceWord(replaceWord1));
